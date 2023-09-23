@@ -1,0 +1,36 @@
+name: Publish Data
+
+permissions:
+  packages: write
+  contents: write
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+
+
+jobs:
+  build_central-europe:
+    name: Push central-europe Docker image to GitHub Packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Free some disk space
+        run: |
+          df -h
+          sudo apt-get remove -y '^dotnet-.*' '^llvm-.*' 'php.*' '^mongodb-.*' '^mysql-.*' '^postgresql-.*' '^gfortran-.*' '^cmake-.*' '^aspnetcore-.*' azure-cli google-cloud-sdk google-chrome-stable firefox powershell
+          sudo rm -rf /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/graalvm/ /usr/local/share/powershell /usr/local/lib/android /usr/local/lib/node_modules /usr/local/.ghcup/ /usr/share/dotnet/
+          sudo apt-get autoremove -y
+          sudo apt-get clean
+          sudo rm -rf /var/lib/apt/lists/*
+          docker rmi -f node:14 node:16 node:18 node:14-alpine node:16-alpine node:18-alpine ubuntu:18.04 ubuntu:20.04 ubuntu:22.04 debian:10 debian:11 buildpack-deps:buster buildpack-deps:bullseye
+          df -h
+
+      - name: Check out the repo
+        run: |
+          du -chs /opt/
+          du -chs /usr/
+          du -chs /usr/local/
+          apt list --installed
