@@ -31,7 +31,7 @@ jobs:
       - name: Additional uninstall
         run: |
           sudo apt-get remove -y '^clang-.*' '^cpp-.*'  '^libmono-.*' '^mono-.*'
-#'^gcc-.*'
+          #'^gcc-.*'
           df -h
 
       - name: Gather information
