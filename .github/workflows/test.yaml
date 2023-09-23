@@ -30,8 +30,8 @@ jobs:
 
       - name: Additional uninstall
         run: |
-          sudo apt-get remove -y '^clang-.*' '^cpp-.*'  '^libmono-.*' '^mono-.*'
-          #'^gcc-.*'
+          sudo apt-get remove -y '^clang-.*' '^cpp-.*'  '^libmono-.*' '^mono-.*' '^ruby.*' '^r-.*'
+          rm -rf /opt/hostedtoolcache /opt/microsoft /usr/local/aws-*
           df -h
 
       - name: Gather information
