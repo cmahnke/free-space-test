@@ -30,7 +30,7 @@ jobs:
 
       - name: Additional uninstall
         run: |
-          sudo apt-get remove -y '^clang-.*' '^cpp-.*'  '^libmono-.*' '^mono-.*' '^ruby.*' '^r-.*'
+          sudo apt-get remove -y '^clang-.*' '^cpp-.*'  '^libmono-.*' '^mono-.*' '^ruby.*' '^r-.*' '^python3-.*'
           sudo rm -rf /opt/hostedtoolcache /opt/microsoft /usr/local/aws-*
           df -h
 
@@ -38,5 +38,7 @@ jobs:
         run: |
           du -chs /opt/*
           du -chs /usr/*
+          du -chs /usr/share/*
           du -chs /usr/local/*
+          docker images
           apt list --installed
