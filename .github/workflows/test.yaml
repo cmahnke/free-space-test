@@ -46,6 +46,8 @@ jobs:
           docker images
           apt list --installed
       - name: Validate
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           gh extension install docker/setup-buildx-action
           gh extension install docker/build-push-action
