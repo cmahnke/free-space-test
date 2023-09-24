@@ -30,6 +30,7 @@ jobs:
 
       - name: Additional uninstall
         run: |
+          which gh
           sudo apt-get remove -y '^clang-.*' '^cpp-.*'  '^libmono-.*' '^mono-.*' '^ruby.*' '^r-.*' '^python3-.*' '^temurin-.*'
           sudo apt-get autoremove -y
           sudo apt-get clean
@@ -44,3 +45,7 @@ jobs:
           du -chs /usr/local/*
           docker images
           apt list --installed
+      - name: Validate
+        run: |
+          gh extension install docker/setup-buildx-action
+          gh extension install docker/build-push-action
