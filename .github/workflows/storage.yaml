@@ -32,6 +32,17 @@ jobs:
         with:
           build-mount-path: /home/runner/work/map-data/storage
 
+      - name: Post maximize
+        run: |
+          mount
+          df -h
+
+          #sudo umount -f /home/runner/work/map-data/storage
+          sudo pvmove `sudo losetup -j /mnt/tmp-pv.img |cut -d ':' -f 1`
+          sudo vgreduce buildvg `sudo losetup -j /mnt/tmp-pv.img |cut -d ':' -f 1`
+          sudo resize2fs /dev/mapper/buildvg-buildlv
+
+
       - name: Test umount
         run: |
           mount
