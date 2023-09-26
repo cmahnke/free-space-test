@@ -38,9 +38,13 @@ jobs:
           df -h
 
           #sudo umount -f /home/runner/work/map-data/storage
-          sudo pvmove `sudo losetup -j /mnt/tmp-pv.img |cut -d ':' -f 1`
-          sudo vgreduce buildvg `sudo losetup -j /mnt/tmp-pv.img |cut -d ':' -f 1`
+          echo "Trying do remove /mnt"
+          sudo pvmove `sudo losetup -j /mnt/tmp-pv.img |cut -d ':' -f 1` || true
+          sudo vgreduce buildvg `sudo losetup -j /mnt/tmp-pv.img |cut -d ':' -f 1` || true
           sudo resize2fs /dev/mapper/buildvg-buildlv
+
+          mount
+          df -h
 
 
       - name: Test umount
