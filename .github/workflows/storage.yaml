@@ -26,3 +26,29 @@ jobs:
           echo "`pwd` -> `ls`"
           echo ".. -> `ls ..`"
           echo "../.. -> `ls ../..`"
+
+      - name: Maximize build space
+        uses: easimon/maximize-build-space@master
+        with:
+          build-mount-path: /home/runner/work/map-data/storage
+
+      - name: Run data generator
+        run: |
+          mount
+
+          # Undo volume mounts
+          sudo swapoff -a
+
+
+
+          sudo umount -f /home/runner/work/map-data/storage
+          sudo lvchange -an /dev/buildvg/workspace
+
+          vgremove buildvg
+          pvremove
+
+          rm -f /pv.img /mnt/tmp-pv.img
+          # Recreate swap
+          sudo fallocate -l 4G /mnt/swapfile
+          sudo mkswap /mnt/swapfile
+          sudo swapon /mnt/swapfile
