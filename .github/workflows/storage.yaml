@@ -38,13 +38,15 @@ jobs:
           mount
           df -h
 
-          #sudo umount -f /home/runner/work/map-data/storage
           echo "Trying do remove /mnt"
+          sudo swapoff -a
           echo "Init pvmove on `sudo losetup -j /mnt/tmp-pv.img |cut -d ':' -f 1`"
           sudo pvmove `sudo losetup -j /mnt/tmp-pv.img |cut -d ':' -f 1` || true
           echo "Init vgreduce on `sudo losetup -j /mnt/tmp-pv.img |cut -d ':' -f 1`"
           sudo vgreduce buildvg `sudo losetup -j /mnt/tmp-pv.img |cut -d ':' -f 1` || true
           sudo resize2fs /dev/mapper/buildvg-buildlv
+          sudo mkswap "/dev/mapper/${VG_NAME}-swap"
+          sudo swapon "/dev/mapper/${VG_NAME}-swap"
 
           mount
           df -h
