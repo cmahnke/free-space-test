@@ -57,10 +57,11 @@ jobs:
           sudo losetup -d `sudo losetup -j /pv.img |cut -d ':' -f 1`
           sudo losetup -d `sudo losetup -j /mnt/tmp-pv.img |cut -d ':' -f 1`
 
-          rm -f /pv.img /mnt/tmp-pv.img
+          sudo rm -f /pv.img /mnt/tmp-pv.img
           # Recreate swap
           sudo fallocate -l 4G /mnt/swapfile
           sudo mkswap /mnt/swapfile
           sudo swapon /mnt/swapfile
 
+          mount
           df -h
