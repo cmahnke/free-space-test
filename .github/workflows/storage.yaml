@@ -46,7 +46,7 @@ jobs:
           sudo vgremove buildvg
 
           echo "lo pv.img"
-          sudo losetup -j /pv.img | cut
+          sudo losetup -j /pv.img
           echo "lo tmp-pv.img"
           sudo losetup -j /mnt/tmp-pv.img
 
