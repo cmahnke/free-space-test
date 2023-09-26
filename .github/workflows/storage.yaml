@@ -31,6 +31,7 @@ jobs:
         uses: easimon/maximize-build-space@master
         with:
           build-mount-path: /home/runner/work/map-data/storage
+          temp-reserve-mb: 10240
 
       - name: Post maximize
         run: |
@@ -39,7 +40,9 @@ jobs:
 
           #sudo umount -f /home/runner/work/map-data/storage
           echo "Trying do remove /mnt"
+          echo "Init pvmove on `sudo losetup -j /mnt/tmp-pv.img |cut -d ':' -f 1`"
           sudo pvmove `sudo losetup -j /mnt/tmp-pv.img |cut -d ':' -f 1` || true
+          echo "Init vgreduce on `sudo losetup -j /mnt/tmp-pv.img |cut -d ':' -f 1`"
           sudo vgreduce buildvg `sudo losetup -j /mnt/tmp-pv.img |cut -d ':' -f 1` || true
           sudo resize2fs /dev/mapper/buildvg-buildlv
 
