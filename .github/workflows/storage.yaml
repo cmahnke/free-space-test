@@ -45,6 +45,11 @@ jobs:
           sudo lvremove -f /dev/mapper/buildvg-buildlv
           sudo vgremove buildvg
 
+          echo "lo pv.img"
+          sudo losetup -j /pv.img
+          echo "lo tmp-pv.img"
+          sudo losetup -j /mnt/tmp-pv.img
+
           sudo pvremove `sudo losetup -j /pv.img`
           sudo pvremove `sudo losetup -j /mnt/tmp-pv.img`
           sudo losetup -d `sudo losetup -j /pv.img`
