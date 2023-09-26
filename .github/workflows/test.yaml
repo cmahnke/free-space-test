@@ -29,7 +29,7 @@ jobs:
       - name: Additional uninstall
         run: |
           which gh
-          sudo apt-get remove -y '^clang-.*' '^cpp-.*'  '^libmono-.*' '^mono-.*' '^ruby.*' '^r-.*' '^python3-.*' '^temurin-.*'
+          sudo apt-get remove -y '^clang-.*' '^cpp-.*'  '^libmono-.*' '^mono-.*' '^ruby.*' '^r-.*' '^python3-.*' '^temurin-.*' '^java-.*'
           sudo apt-get autoremove -y
           sudo apt-get clean
           sudo rm -rf /opt/hostedtoolcache /opt/microsoft /usr/local/aws-* /usr/share/miniconda
