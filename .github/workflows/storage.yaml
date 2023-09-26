@@ -43,13 +43,17 @@ jobs:
           sudo lvchange -an /dev/mapper/buildvg-buildlv
           sudo lvremove -f /dev/mapper/buildvg-swap
           sudo lvremove -f /dev/mapper/buildvg-buildlv
-          sudo lvs
           sudo vgremove buildvg
 
-          pvremove
+          sudo pvremove `sudo losetup -j /pv.img`
+          sudo pvremove `sudo losetup -j /mnt/tmp-pv.img`
+          sudo losetup -d `sudo losetup -j /pv.img`
+          sudo losetup -d `sudo losetup -j /mnt/tmp-pv.img`
 
           rm -f /pv.img /mnt/tmp-pv.img
           # Recreate swap
           sudo fallocate -l 4G /mnt/swapfile
           sudo mkswap /mnt/swapfile
           sudo swapon /mnt/swapfile
+
+          df -h
