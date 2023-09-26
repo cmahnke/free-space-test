@@ -32,6 +32,7 @@ jobs:
         with:
           build-mount-path: /home/runner/work/map-data/storage
           temp-reserve-mb: 10240
+          overprovision-lvm: true
 
       - name: Post maximize
         run: |
