@@ -38,13 +38,14 @@ jobs:
 
           # Undo volume mounts
           sudo swapoff -a
-
-
-
           sudo umount -f /home/runner/work/map-data/storage
-          sudo lvchange -an /dev/buildvg/workspace
+          sudo lvchange -an /dev/mapper/buildvg-swap
+          sudo lvchange -an /dev/mapper/buildvg-buildlv
+          sudo lvremove -f /dev/mapper/buildvg-swap
+          sudo lvremove -f /dev/mapper/buildvg-buildlv
+          sudo lvs
+          sudo vgremove buildvg
 
-          vgremove buildvg
           pvremove
 
           rm -f /pv.img /mnt/tmp-pv.img
