@@ -46,7 +46,13 @@ jobs:
 
       - name: List remaining packages
         run: |
-          dpkg-query -W --showformat='${Installed-Size;10}\t${Package}\n' | sort  -k1,1n 
+          dpkg-query -W --showformat='${Installed-Size;10}\t${Package}\n' | sort  -k1,1n
+
+          sudo apt-get purge -y  '^linux-modules-.*' '^libllvm.*' microsoft-edge-stable google-cloud-sdk
+          sudo apt-get autoremove -y
+          sudo apt-get clean
+          df -h
+
       - name: Validate
         continue-on-error: true
         env:
