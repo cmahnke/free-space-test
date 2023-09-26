@@ -20,3 +20,9 @@ jobs:
           mount
           cat /proc/swaps
           swapon -s
+
+      - name: Get context
+        run: |
+          echo "`pwd` -> `ls`"
+          echo ".. -> `ls ..`"
+          echo "../.. -> `ls ../..`"
