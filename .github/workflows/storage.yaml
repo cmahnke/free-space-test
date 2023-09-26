@@ -32,7 +32,7 @@ jobs:
         with:
           build-mount-path: /home/runner/work/map-data/storage
 
-      - name: Run data generator
+      - name: Test umount
         run: |
           mount
 
@@ -50,10 +50,12 @@ jobs:
           echo "lo tmp-pv.img"
           sudo losetup -j /mnt/tmp-pv.img
 
-          sudo pvremove `sudo losetup -j /pv.img|cut -d ':' -f 1`
-          sudo pvremove `sudo losetup -j /mnt/tmp-pv.img|cut -d ':' -f 1`
-          sudo losetup -d `sudo losetup -j /pv.img|cut -d ':' -f 1`
-          sudo losetup -d `sudo losetup -j /mnt/tmp-pv.img|cut -d ':' -f 1`
+          echo "Running pvremove"
+          sudo pvremove `sudo losetup -j /pv.img |cut -d ':' -f 1`
+          sudo pvremove `sudo losetup -j /mnt/tmp-pv.img |cut -d ':' -f 1`
+          echo "Running losetup"
+          sudo losetup -d `sudo losetup -j /pv.img |cut -d ':' -f 1`
+          sudo losetup -d `sudo losetup -j /mnt/tmp-pv.img |cut -d ':' -f 1`
 
           rm -f /pv.img /mnt/tmp-pv.img
           # Recreate swap
