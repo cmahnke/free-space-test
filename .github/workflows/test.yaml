@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_central-europe:
+  free_space:
     name: Free space
     runs-on: ubuntu-latest
     steps:
