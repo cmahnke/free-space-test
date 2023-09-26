@@ -43,6 +43,10 @@ jobs:
           du -chs /usr/local/*
           docker images
           apt list --installed
+
+      - name: List remaining packages
+        run: |
+          dpkg-query -W --showformat='${Installed-Size;10}\t${Package}\n' | sort  -k1,1n 
       - name: Validate
         continue-on-error: true
         env:
