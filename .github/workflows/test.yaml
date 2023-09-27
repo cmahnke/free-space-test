@@ -53,6 +53,10 @@ jobs:
           sudo apt-get clean
           df -h
 
+      - name: List sources
+        run: |
+          sudo apt-cache policy 
+
       - name: Validate
         continue-on-error: true
         env:
