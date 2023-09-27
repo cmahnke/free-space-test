@@ -55,7 +55,8 @@ jobs:
 
       - name: List sources
         run: |
-          sudo apt-cache policy 
+          sudo apt-cache policy
+          sudo cat /etc/apt/sources.list
 
       - name: Validate
         continue-on-error: true
