@@ -27,6 +27,10 @@ jobs:
           echo ".. -> `ls ..`"
           echo "../.. -> `ls ../..`"
 
+      - name: Get Java
+        run: |
+          ls -R /usr/lib/jvm/
+
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
         with:
