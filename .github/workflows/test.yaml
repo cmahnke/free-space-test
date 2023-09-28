@@ -29,7 +29,7 @@ jobs:
       - name: Additional uninstall
         run: |
           which gh
-          sudo apt-get purge -y '^clang-.*' '^cpp-.*'  '^libmono-.*' '^mono-.*' '^ruby.*' '^r-.*' '^python3-.*' '^temurin-.*' '^java-.*' '^linux-modules-.*' '^libllvm.*' microsoft-edge-stable google-cloud-sdk humanity-icon-theme perl-modules-5.34
+          sudo apt-get purge -y '^clang-.*' '^cpp-.*'  '^libmono-.*' '^mono-.*' '^ruby.*' '^r-.*' '^python3-.*' '^temurin-.*' '^java-.*' '^linux-modules-.*' '^libllvm.*' 'x11.*' microsoft-edge-stable google-cloud-sdk humanity-icon-theme perl-modules-5.34 vim-runtime
           sudo apt-get autoremove -y
           sudo apt-get clean
           sudo rm -rf /opt/hostedtoolcache /opt/microsoft /usr/local/aws-* /usr/share/miniconda /opt/az /usr/share/kotlinc /usr/share/man /usr/share/sbt /usr/local/julia1.9.3
@@ -48,7 +48,7 @@ jobs:
         run: |
           dpkg-query -W --showformat='${Installed-Size;10}\t${Package}\n' | sort  -k1,1n
 
-          sudo apt-get purge -y 'x11.*'
+          sudo apt-get purge -y
           sudo apt-get autoremove -y
           sudo apt-get clean
           df -h
