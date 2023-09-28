@@ -33,7 +33,7 @@ jobs:
           sudo apt-get purge -y '^clang-.*' '^cpp-.*'  '^libmono-.*' '^mono-.*' '^ruby.*' '^r-.*' '^python3-.*' '^temurin-.*' '^java-.*' '^linux-modules-.*' '^libllvm.*' 'x11.*' '^nginx-.*' microsoft-edge-stable humanity-icon-theme perl-modules-5.34 vim-runtime
           sudo apt-get autoremove -y
           sudo apt-get clean
-          sudo rm -rf /opt/hostedtoolcache /opt/microsoft /usr/local/aws-* /usr/share/miniconda /opt/az /usr/share/kotlinc /usr/share/man /usr/share/sbt /usr/local/julia1.9.3
+          sudo rm -rf /opt/hostedtoolcache /opt/microsoft /usr/local/aws-* /usr/share/miniconda /opt/az /usr/share/kotlinc /usr/share/man /usr/share/sbt /usr/local/julia* /usr/share/az* /usr/share/apache-maven* /usr/share/gradle* /usr/share/swift
           df -h
 
       - name: Gather information
