@@ -25,7 +25,7 @@ jobs:
 
       - name: sudo npm install
         run: |
-          npx install -g yarn
+          npm install -g yarn
 
       - name: Find yarn again
         run: |
@@ -33,4 +33,4 @@ jobs:
 
       - name: sudo npm install
         run: |
-          npx run yarn
+          npm run yarn
