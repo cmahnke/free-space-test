@@ -1,0 +1,36 @@
+name: npm and yarn test
+
+permissions:
+  packages: write
+  contents: write
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  cleanup:
+    name: find paths
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.0.0
+
+      - name: Find yarn
+        run: |
+          which yarn
+
+      - name: sudo npm install
+        run: |
+          npx install -g yarn
+
+      - name: Find yarn again
+        run: |
+          which yarn
+
+      - name: sudo npm install
+        run: |
+          npx run yarn
