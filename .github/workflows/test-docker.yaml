@@ -1,0 +1,46 @@
+name: Docker on Ubuntu analysis
+
+permissions:
+  packages: write
+  contents: write
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  docker-ubuntu-latest-images:
+    name: Docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Free some disk space
+        run: |
+          docker images
+
+  docker-ubuntu-latest-images:
+    name: Docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Free some disk space
+        run: |
+          echo "Installing Docker"
+          sudo apt-get install docker-ce
+
+
+  docker-ubuntu-latest-images:
+    name: Docker
+    runs-on: ubuntu-2204
+    steps:
+      - name: Free some disk space
+        run: |
+          docker images
+
+  docker-ubuntu-latest-images:
+    name: Docker
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Free some disk space
+        run: |
+          docker images
