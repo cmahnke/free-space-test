@@ -12,7 +12,7 @@ on:
 
 jobs:
   docker-ubuntu-latest-images:
-    name: Docker
+    name: Docker latest images
     runs-on: ubuntu-latest
     steps:
       - name: Free some disk space
@@ -20,7 +20,7 @@ jobs:
           docker images
 
   docker-ubuntu-latest-install:
-    name: Docker
+    name: Docker latest install
     runs-on: ubuntu-latest
     steps:
       - name: Free some disk space
@@ -30,7 +30,7 @@ jobs:
 
 
   docker-ubuntu-2204-images:
-    name: Docker
+    name: Docker 22-04 images
     runs-on: ubuntu-2204
     steps:
       - name: Free some disk space
@@ -38,7 +38,7 @@ jobs:
           docker images
 
   docker-ubuntu-2204-install:
-    name: Docker
+    name: Docker 22.04 install
     runs-on: ubuntu-22.04
     steps:
       - name: Free some disk space
